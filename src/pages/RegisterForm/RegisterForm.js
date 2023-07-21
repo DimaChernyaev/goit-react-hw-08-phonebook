@@ -40,12 +40,11 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleRegisteringUser = (values, { resetForm }) => {
-    console.log(values);
     try {
       dispatch(registeringUser(values));
       resetForm();
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
     }
   };
 

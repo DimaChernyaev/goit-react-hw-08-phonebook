@@ -10,7 +10,7 @@ import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { repeatName } from 'components/helpers/repeatName';
-import { ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { addContacts } from 'redux/contactsLogics/operation';
 import { selectContactsItems } from 'redux/contactsLogics/selectors';
@@ -47,7 +47,9 @@ const Form = () => {
     const repeatContactNeme = repeatName(contacts, values.name);
 
     if (repeatContactNeme) {
-      toast.warn(`Sorry, but you already have ${values.name} in your contacts`);
+      toast.error(
+        `Sorry, but you already have ${values.name} in your contacts`
+      );
       resetForm();
       return;
     }
@@ -60,7 +62,7 @@ const Form = () => {
 
   return (
     <>
-      <ToastContainer />
+      <Toaster position="top-center" />
       <Formik
         initialValues={initialValues}
         onSubmit={submitForm}
