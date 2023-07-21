@@ -10,7 +10,7 @@ export const ContactList = styled.ul`
 export const Contact = styled.li`
   display: flex;
   align-items: center;
-  width: 330px;
+  width: 420px;
   gap: 12px;
   padding: 8px 12px;
   border: 2px solid goldenrod;

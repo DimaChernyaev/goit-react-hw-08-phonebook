@@ -9,5 +9,9 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
-  background-color: rgba(176, 230, 237, 0.5);
+  background-color: white;
+  border-bottom: 1px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 
+  0px 1px 1px rgba(46, 47, 66, 0.16), 
+  0px 2px 1px rgba(46, 47, 66, 0.08);
 `;

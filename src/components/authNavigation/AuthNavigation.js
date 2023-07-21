@@ -1,11 +1,16 @@
-import { NavLink } from 'react-router-dom';
-import { WrapperLogLink } from './AuthNavigation.styled';
+import {
+  WrapperLogLink,
+  ButtonRegistration,
+  ButtonLogin,
+  Line,
+} from './AuthNavigation.styled';
 
 const AuthNavigation = () => {
   return (
     <WrapperLogLink>
-      <NavLink to="/register">Register</NavLink>
-      <NavLink to="/login">Log In</NavLink>
+      <ButtonRegistration to="/register">Register</ButtonRegistration>
+      <Line></Line>
+      <ButtonLogin to="/login">Log In</ButtonLogin>
     </WrapperLogLink>
   );
 };

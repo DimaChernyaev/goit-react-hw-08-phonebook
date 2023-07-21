@@ -4,10 +4,11 @@ import Form from 'components/contacts/form/Form';
 import {
   Container,
   ContainerListContacts,
-  TitleContactList,
-  TitlePhonebook,
+  TitleContacts,
   NullContactsMessage,
-} from 'components/contacts/Contacts.styled';
+  WrapperContacts,
+  WrapperPhonebook,
+} from 'components/pageStyled/Contacts.styled';
 import { useSelector } from 'react-redux';
 import {
   selectContactsItems,
@@ -33,26 +34,30 @@ const Contacts = () => {
 
   return (
     <Container>
-      <TitlePhonebook>Phonebook</TitlePhonebook>
-      <Form />
+      <WrapperPhonebook>
+        <TitleContacts>Phonebook</TitleContacts>
+        <Form />
+      </WrapperPhonebook>
 
-      <TitleContactList>Contacts</TitleContactList>
-      <ContainerListContacts>
-        <Filter />
-        {isLoading && <Loader />}
-        {isError && <ErrorMessage>{constMessage.errorFetch}</ErrorMessage>}
-        {contacts.length > 0 && !isError ? (
-          <ContactsList />
-        ) : (
-          <>
-            {!isLoading && !isError && (
-              <NullContactsMessage>
-                {constMessage.emptyList}
-              </NullContactsMessage>
-            )}
-          </>
-        )}
-      </ContainerListContacts>
+      <WrapperContacts>
+        <TitleContacts>Contacts</TitleContacts>
+        <ContainerListContacts>
+          <Filter />
+          {isLoading && <Loader />}
+          {isError && <ErrorMessage>{constMessage.errorFetch}</ErrorMessage>}
+          {contacts.length > 0 && !isError ? (
+            <ContactsList />
+          ) : (
+            <>
+              {!isLoading && !isError && (
+                <NullContactsMessage>
+                  {constMessage.emptyList}
+                </NullContactsMessage>
+              )}
+            </>
+          )}
+        </ContainerListContacts>
+      </WrapperContacts>
     </Container>
   );
 };

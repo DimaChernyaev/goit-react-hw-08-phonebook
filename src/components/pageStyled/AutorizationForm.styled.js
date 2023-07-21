@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
 
-export const Button = styled.button`
+export const ButtonAuth = styled.button`
   margin-top: 16px;
   display: inline-flex;
   align-items: center;
@@ -24,17 +24,15 @@ export const Button = styled.button`
   }
 `;
 
-export const ContactForm = styled(Form)`
+export const FormAuth = styled(Form)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
 `;
 
-export const Input = styled(Field)`
+export const InputAuth = styled(Field)`
   padding: 5px 12px;
   border-color: goldenrod;
   border-radius: 8px;
@@ -43,27 +41,38 @@ export const Input = styled(Field)`
   text-align: center;
 `;
 
-export const Label = styled.label`
+export const LabelAuth = styled.label`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  &:first-of-type {
-    margin-bottom: 10px;
-  }
 `;
 
-export const InputTitle = styled.span`
-  font-size: 18px;
+export const InputTitleAuth = styled.span`
+  font-size: 16px;
   font-weight: bold;
   color: black;
   margin-bottom: 5px;
 `;
 
-export const ValidationError = styled.div`
+export const ValidationErrorAuth = styled.div`
   max-width: 300px;
   text-align: center;
   color: red;
   font-size: 12px;
+`;
+
+export const FormAuthWrapper = styled.div`
+  padding-top: 40px;
+  text-align: center;
+`;
+
+export const FormAuthTitle = styled.h2`
+  font-size: 28px;
+  margin-bottom: 30px;
+`;
+
+export const TextFormAuth = styled.p`
+  font-size: 16px;
+  margin-top: 20px;
 `;
