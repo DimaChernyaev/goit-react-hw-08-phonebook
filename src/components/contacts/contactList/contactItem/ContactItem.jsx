@@ -2,20 +2,19 @@ import ButtonLoader from 'components/loader/ButtonLoader';
 import { Contact, ContactText, ButtonDelete } from '../ContactList.styled';
 import { FaUserAlt, FaRegTrashAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operation';
-import { selectIsDeleteLoading } from 'redux/selectors';
+import { deleteContact } from 'redux/contactsLogics/operation';
+import { selectIsDeleteLoading } from 'redux/contactsLogics/selectors';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ContactItem = ({ id, name, number }) => {
-  const [deleteId, setDeleteId] = useState(null);
+  const [deleteId] = useState(id);
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsDeleteLoading);
+  const isDeleteLoading = useSelector(selectIsDeleteLoading);
+  const deleteButton = isDeleteLoading && deleteId;
 
-  const handleDeleteContact = async (id, name) => {
-    setDeleteId(id);
-
+  const handleDeleteContact = async () => {
     await dispatch(deleteContact(id));
     toast.info(`The contact named ${name} has been deleted.`);
   };
@@ -24,16 +23,17 @@ const ContactItem = ({ id, name, number }) => {
     <>
       <ToastContainer />
       <Contact>
-        <FaUserAlt size={18}/>
+        <FaUserAlt size={18} />
         <ContactText>
           <p>Name: {name}</p>
           <p>Number: {number}</p>
         </ContactText>
         <ButtonDelete
           type="button"
-          onClick={() => handleDeleteContact(id, name)}
+          disabled={deleteButton}
+          onClick={() => handleDeleteContact()}
         >
-          {isLoading && deleteId === id ? <ButtonLoader /> : <FaRegTrashAlt size={16}/>}
+          {deleteButton === id ? <ButtonLoader /> : <FaRegTrashAlt size={16} />}
         </ButtonDelete>
       </Contact>
     </>

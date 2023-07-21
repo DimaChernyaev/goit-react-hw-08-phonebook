@@ -1,22 +1,36 @@
 import { Formik, Form, Field } from 'formik';
+import { useDispatch } from 'react-redux';
+import { registeringUser } from 'redux/authLogics/operationAuth';
+
+const initialValues = {
+  name: '',
+  email: '',
+  password: '',
+};
 
 const RegisterForm = () => {
-  const initialValues = {
-    login: '',
-    email: '',
-    password: '',
+  const dispatch = useDispatch();
+
+  const handleRegisteringUser = (values, { resetForm }) => {
+    console.log(values);
+    try {
+      dispatch(registeringUser(values));
+      resetForm();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      // onSubmit={submitForm}
+      onSubmit={handleRegisteringUser}
       // validationSchema={validationSchema}
     >
       <Form>
         <label>
-          <p>Login</p>
-          <Field type="text" name="login" />
+          <p>Name</p>
+          <Field type="text" name="name" />
           {/* <ErrorMessage name="name" component={ValidationError} /> */}
         </label>
         <label>
@@ -25,7 +39,7 @@ const RegisterForm = () => {
           {/* <ErrorMessage name="name" component={ValidationError} /> */}
         </label>
         <label>
-          <p>Number</p>
+          <p>Password</p>
           <Field type="password" name="password" />
           {/* <ErrorMessage name="number" component={ValidationError} /> */}
         </label>

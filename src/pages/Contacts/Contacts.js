@@ -13,10 +13,10 @@ import {
   selectContactsItems,
   selectError,
   selectIsAllLoading,
-} from 'redux/selectors';
+} from 'redux/contactsLogics/selectors';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchContacts } from 'redux/operation';
+import { fetchContacts } from 'redux/contactsLogics/operation';
 import Loader from 'components/loader/Loader';
 import { constMessage } from 'components/helpers/constMessage';
 import ErrorMessage from 'components/errorMessage/ErrorMessage';

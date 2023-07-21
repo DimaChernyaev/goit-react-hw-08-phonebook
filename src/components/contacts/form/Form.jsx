@@ -12,8 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { repeatName } from 'components/helpers/repeatName';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addContacts } from 'redux/operation';
-import { selectContactsItems } from 'redux/selectors';
+import { addContacts } from 'redux/contactsLogics/operation';
+import { selectContactsItems } from 'redux/contactsLogics/selectors';
 
 const validationSchema = yup.object().shape({
   name: yup
@@ -34,14 +34,14 @@ const validationSchema = yup.object().shape({
     .required('Number is a required field! Please, fill the field'),
 });
 
+const initialValues = {
+  name: '',
+  number: '',
+};
+
 const Form = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContactsItems);
-
-  const initialValues = {
-    name: '',
-    number: '',
-  };
 
   async function submitForm(values, { resetForm }) {
     const repeatContactNeme = repeatName(contacts, values.name);
