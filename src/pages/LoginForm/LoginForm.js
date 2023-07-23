@@ -14,7 +14,6 @@ import {
 } from 'components/pageStyled/AutorizationForm.styled';
 import * as yup from 'yup';
 import { selectError } from 'redux/authLogics/selectorsAuth';
-import toast, { Toaster } from 'react-hot-toast';
 
 const initialValues = {
   email: '',
@@ -41,10 +40,6 @@ const LoginForm = () => {
     try {
       await dispatch(loginUser(values));
       resetForm();
-
-      if (error !== null) {
-        toast.error('Password or email is incorrect, please try again!');
-      }
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +47,6 @@ const LoginForm = () => {
 
   return (
     <FormAuthWrapper>
-      <Toaster position="top-center" />
       <FormAuthTitle>Login Form</FormAuthTitle>
       <Formik
         initialValues={initialValues}
