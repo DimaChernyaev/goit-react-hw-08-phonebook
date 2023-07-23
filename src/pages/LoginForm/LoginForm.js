@@ -1,5 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/authLogics/operationAuth';
 import {
   ButtonAuth,
@@ -13,7 +13,6 @@ import {
   TextFormAuth,
 } from 'components/pageStyled/AutorizationForm.styled';
 import * as yup from 'yup';
-import { selectError } from 'redux/authLogics/selectorsAuth';
 
 const initialValues = {
   email: '',
@@ -34,7 +33,6 @@ const validationSchema = yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const error = useSelector(selectError);
 
   const handleLoginUser = async (values, { resetForm }) => {
     try {
