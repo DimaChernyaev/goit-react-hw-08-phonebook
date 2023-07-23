@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, addContacts, deleteContact } from './operation';
+import {
+  fetchContacts,
+  addContacts,
+  deleteContact,
+  updateContact,
+} from './operation';
 import * as handleFunctionFetch from './contactsFunction';
 
 const contactsSlice = createSlice({
@@ -31,10 +36,17 @@ const contactsSlice = createSlice({
         deleteContact.fulfilled,
         handleFunctionFetch.handleFulfilledDeleteContact
       )
-      .addCase(
-        deleteContact.rejected,
-        handleFunctionFetch.handleRejectedDelete
-      );
+      .addCase(deleteContact.rejected, handleFunctionFetch.handleRejectedDelete)
+      .addCase(updateContact.fulfilled, (state, action) => {
+        const updatedContact = action.payload;
+
+        state.items = state.items.map(contact => {
+          if (contact.id === updatedContact.id) {
+            return updatedContact;
+          }
+          return contact;
+        });
+      });
   },
 });
 

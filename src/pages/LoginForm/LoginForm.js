@@ -1,5 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'redux/authLogics/operationAuth';
 import {
   ButtonAuth,
@@ -13,6 +13,8 @@ import {
   TextFormAuth,
 } from 'components/pageStyled/AutorizationForm.styled';
 import * as yup from 'yup';
+import { selectError } from 'redux/authLogics/selectorsAuth';
+import toast, { Toaster } from 'react-hot-toast';
 
 const initialValues = {
   email: '',
@@ -33,11 +35,16 @@ const validationSchema = yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
 
-  const handleLoginUser = (values, { resetForm }) => {
+  const handleLoginUser = async (values, { resetForm }) => {
     try {
-      dispatch(loginUser(values));
+      await dispatch(loginUser(values));
       resetForm();
+
+      if (error !== null) {
+        toast.error('Password or email is incorrect, please try again!');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -45,6 +52,7 @@ const LoginForm = () => {
 
   return (
     <FormAuthWrapper>
+      <Toaster position="top-center" />
       <FormAuthTitle>Login Form</FormAuthTitle>
       <Formik
         initialValues={initialValues}

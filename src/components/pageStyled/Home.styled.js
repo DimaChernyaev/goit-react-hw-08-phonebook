@@ -20,7 +20,7 @@ export const HomeBackground = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 72px;
+  font-size: 112px;
   line-height: 1.4;
   color: white;
 `;

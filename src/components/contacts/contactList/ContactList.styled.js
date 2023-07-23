@@ -24,7 +24,7 @@ export const ContactText = styled.div`
   text-align: left;
 `;
 
-export const ButtonDelete = styled.button`
+export const ButtonItem = styled.button`
   display: inline-flex;
   align-items: center;
   margin-left: auto;
@@ -46,4 +46,10 @@ export const ButtonDelete = styled.button`
     border-color: red;
     box-shadow: 1px -1px 2px rgba(78, 78, 78, 0.8);
   }
+`;
+
+export const WrapperButton = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
 `;

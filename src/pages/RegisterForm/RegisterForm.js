@@ -1,5 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registeringUser } from 'redux/authLogics/operationAuth';
 import {
   ButtonAuth,
@@ -13,6 +13,8 @@ import {
   TextFormAuth,
 } from 'components/pageStyled/AutorizationForm.styled';
 import * as yup from 'yup';
+import { selectError } from 'redux/authLogics/selectorsAuth';
+import toast, { Toaster } from 'react-hot-toast';
 
 const initialValues = {
   name: '',
@@ -38,11 +40,17 @@ const validationSchema = yup.object().shape({
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
+  console.log(error);
 
-  const handleRegisteringUser = (values, { resetForm }) => {
+  const handleRegisteringUser = async (values, { resetForm }) => {
     try {
-      dispatch(registeringUser(values));
+      await dispatch(registeringUser(values));
       resetForm();
+
+      if (error !== null) {
+        toast.error('Oops, something went wrong, please try again!');
+      }
     } catch (e) {
       console.log(e);
     }
@@ -50,6 +58,7 @@ const RegisterForm = () => {
 
   return (
     <FormAuthWrapper>
+      <Toaster position="top-center" />
       <FormAuthTitle>Registration form</FormAuthTitle>
       <Formik
         initialValues={initialValues}

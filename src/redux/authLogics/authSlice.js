@@ -18,13 +18,22 @@ const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(registeringUser.pending, state => {
+        state.error = null;
+      })
       .addCase(registeringUser.fulfilled, handleFunctionAuth.handleAuthFulfield)
       .addCase(registeringUser.rejected, (state, action) => {
         state.error = action.payload;
       })
+      .addCase(loginUser.pending, state => {
+        state.error = null;
+      })
       .addCase(loginUser.fulfilled, handleFunctionAuth.handleAuthFulfield)
       .addCase(loginUser.rejected, (state, action) => {
         state.error = action.payload;
+      })
+      .addCase(logoutUser.pending, state => {
+        state.error = null;
       })
       .addCase(logoutUser.fulfilled, handleFunctionAuth.handleAuthLogout)
       .addCase(logoutUser.rejected, (state, action) => {
@@ -32,6 +41,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
+        state.error = null;
       })
       .addCase(refreshUser.fulfilled, handleFunctionAuth.handleAuthRefresh)
       .addCase(refreshUser.rejected, (state, action) => {
